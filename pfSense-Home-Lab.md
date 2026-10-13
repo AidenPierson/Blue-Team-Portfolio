@@ -43,7 +43,7 @@
 - I attempted to ping Trusted from Guest, which failed as intended.
 - I confirmed internet access was working on each client after the DNS fix.
 
-### Next Step
+### Next Steps
 
 - Deploy Snort as an IDS.
 - Generate attack traffic with Kali to test detection rules.
