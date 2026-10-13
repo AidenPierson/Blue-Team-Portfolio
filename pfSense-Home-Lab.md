@@ -40,3 +40,4 @@ I confirmed internet access was working on each client after the DNS fix.
 
 Next Step:
 Deploy Snort as an IDS.
+Generate attack traffic with Kali to test detection rules.
