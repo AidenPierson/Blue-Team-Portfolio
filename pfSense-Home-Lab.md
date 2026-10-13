@@ -36,7 +36,8 @@
 - The DHCP scopes for the clients weren't handing out DNS servers.
 - I added 1.1.1.1 and 8.8.8.8 to each VLAN's DHCP settings.
 - This resolved the issue.
-- I then confirmed each client was on the correct subnet using ```ip a```.
+- I then confirmed each client was on the correct subnet using the following.
+```ip a```
 - I attempted to ping Trusted from Guest, which failed as intended.
 - I confirmed internet access was working on each client after the DNS fix.
 
