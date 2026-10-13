@@ -1,7 +1,9 @@
 Goal:
+
 Build a segmented home lab network using pfSense as a firewall and router. Create isolated VLANs for Trusted, IoT, and Guest zones.
 
 What I Did:
+
 Installed VirtualBox
 Downloaded pfSense CE Version 2.9
 Created a new pfSense VM in VirtualBox.
@@ -39,5 +41,6 @@ I attempted to ping Trusted from Guest, which failed as intended.
 I confirmed internet access was working on each client after the DNS fix.
 
 Next Step:
+
 Deploy Snort as an IDS.
 Generate attack traffic with Kali to test detection rules.
