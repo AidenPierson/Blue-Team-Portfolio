@@ -13,11 +13,11 @@
 - nstalled Ubuntu 26.04.1 as a LAN client.
 - The VirtualBox GUI only showed Adapter 1 under the Network. I had to use VBoxManage from the command line to add the second adapter directly.
   
-'''VBoxManage modifyvm "pfSense-Firewall" --nic2 intnet --intnet2 "lan-net"'''
+```VBoxManage modifyvm "pfSense-Firewall" --nic2 intnet --intnet2 "lan-net"```
   
 - I then verified it worked with the following.
 
-'''VBoxManage showvminfo "pfSense-Firewall" | findstr "NIC"'''
+```VBoxManage showvminfo "pfSense-Firewall" | findstr "NIC"```
 
 - This confirmed that both NIC 1 and NIC 2 were configured correctly.
 - Created three VLANs in pfSense with 802.1Q tagging. The three VLANs are named Trusted (10), IoT (20), and Guest (30). They each with its own subnet and DHCP scope.
@@ -25,18 +25,18 @@
 - Wrote firewall rules using an RFC1918 alias. Trusted is allow anywhere. IoT and Guest are block to RFC1918 and allow to internet.
 - For testing, I added a fifth NIC to pfSense via VBoxManage and bound Trusted, IoT, and Guest to dedicated adapters rather than VLAN-tagged client interfaces.
   
-'''VBoxManage modifyvm "pfSense-Firewall" --nic5 intnet --intnet5 "lan-guest"'''
+```VBoxManage modifyvm "pfSense-Firewall" --nic5 intnet --intnet5 "lan-guest"```
   
 - I then verified it worked with the following.
   
-'''VBoxManage showvminfo "pfSense-Firewall" | findstr "NIC"'''
+```VBoxManage showvminfo "pfSense-Firewall" | findstr "NIC"```
   
 - The reason for this is because VirtualBox doesn't pass VLAN tags by default.
 - The clients could ping public IPs, like 8.8.8.8, but couldn't resolved domain names.
 - The DHCP scopes for the clients weren't handing out DNS servers.
 - I added 1.1.1.1 and 8.8.8.8 to each VLAN's DHCP settings.
 - This resolved the issue.
-- I then confirmed each client was on the correct subnet using '''ip a'''.
+- I then confirmed each client was on the correct subnet using ```ip a```.
 - I attempted to ping Trusted from Guest, which failed as intended.
 - I confirmed internet access was working on each client after the DNS fix.
 
